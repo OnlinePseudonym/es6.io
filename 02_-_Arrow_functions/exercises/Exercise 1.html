@@ -30,18 +30,16 @@
 </ul>
 
 <script>
+  const liArray = Array.prototype.slice.call(document.querySelectorAll("[data-time]"));
 
-  // Select all the list items on the page and convert to array
-
-  // Filter for only the elements that contain the word 'flexbox'
-
-  // map down to a list of time strings
-
-  // map to an array of seconds
-
-  // reduce to get total
-
-  // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+  const filtered = liArray
+    .filter(li => li.innerHTML === "Flexbox Video")
+    .map(li => li.dataset.time)
+    .map(timestamp => {
+      const seconds = timestamp.split(':').map(time => parseInt(time));
+      return (seconds[0] * 60) + seconds[1];
+    })
+    .reduce((acc, curr) => acc + curr, 0);
 
 </script>
 </body>
